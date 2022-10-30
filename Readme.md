@@ -12,3 +12,5 @@ docker run --rm --name lab1 --cpus="1" --memory="64M" -p 80:80 dumpling-image
 ```
 docker-compose --compatibility up
 ```
+P.S. Режим сувмісності використовується, бо в нових версіях докеркомпоза обмеження потужностей можна ввімкнути тільки в 
+swarm
