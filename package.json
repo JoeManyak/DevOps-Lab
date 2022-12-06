@@ -1,0 +1,24 @@
+{
+  "name": "devops-lab",
+  "version": "1.0.0",
+  "description": "nodejs simple app for devops labs",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "eslint \"**/*.js\" --ignore-path .gitignore",
+    "eslint:fix": "eslint \"**/*.js\" --fix --ignore-path .gitignore",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoeManyak/DevOps-Lab.git"
+  },
+  "author": "Bohdan Myronchuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoeManyak/DevOps-Lab/issues"
+  },
+  "homepage": "https://github.com/JoeManyak/DevOps-Lab#readme",
+  "dependencies": {
+    "eslint": "^8.29.0"
+  }
+}
