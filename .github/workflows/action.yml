@@ -51,3 +51,15 @@ jobs:
           context: .
           tags: ${{secrets.DOCKERHUB_USER}}/devops-lab-1:latest
           push: true
+  ping:
+    needs: push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull image
+        run: docker pull ${{secrets.DOCKERHUB_USER}}/devops-lab-1:latest
+      - name: Run image
+        run: docker run -p 80:80 -d ${{secrets.DOCKERHUB_USER}}/devops-lab-1
+      - name: Wait for build
+        run: sleep 5
+      - name: Ping
+        run: curl localhost
