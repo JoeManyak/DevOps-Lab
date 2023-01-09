@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app-deployment
+  namespace: devops
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-app
+    spec:
+      containers:
+        - image: joemanyak/devops-lab-1:latest
+          imagePullPolicy: IfNotPresent
+          name: nodejs-app
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+          livenessProbe:
+            httpGet:
+              path: "/home"
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 3
+        - image: nginx:alpine
+          name: nginx-reverse-proxy
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /etc/nginx
+              readOnly: true
+              name: nginx-conf
+            - mountPath: /var/log/nginx
+              name: log
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf
+            items:
+              - key: nginx.conf
+                path: nginx.conf
+        - name: log
+          emptyDir: { }
