@@ -25,7 +25,7 @@ spec:
               memory: 128Mi
           livenessProbe:
             httpGet:
-              path: "/home"
+              path: "/"
               port: 80
             initialDelaySeconds: 30
             periodSeconds: 10
